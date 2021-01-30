@@ -111,8 +111,8 @@
         </div>
         </section>
         <script>
-            
-            let firstClassTotal  = 0;
+
+            let firstClassTotal = 0;
             let economyClassTotal = 0;
             let subTotal = firstClassTotal + economyClassTotal;
 
@@ -124,7 +124,10 @@
                 firstClassTotal = firstClassNewCount * 150;
                 subTotal = firstClassTotal + economyClassTotal;
                 document.getElementById("subTotalValue").innerText = "$" + subTotal;
-                //return firstClassTotal;
+                let vat = subTotal * 0.1;
+                document.getElementById("vatCharge").innerText = vat;
+                const totalPrice = subTotal + vat;
+                document.getElementById("totalPrice").innerText = totalPrice;
             })
 
             document.getElementById("firstClass-decrease").addEventListener("click", function () {
@@ -135,8 +138,12 @@
                 firstClassTotal = firstClassNewCount * 150;
                 subTotal = firstClassTotal + economyClassTotal;
                 document.getElementById("subTotalValue").innerText = "$" + subTotal;
-                //return firstClassTotal;
+                let vat = subTotal * 0.1;
+                document.getElementById("vatCharge").innerText = vat;
+                const totalPrice = subTotal + vat;
+                document.getElementById("totalPrice").innerText = totalPrice;
             })
+
             document.getElementById("economyClass-increase").addEventListener("click", function () {
                 const economyClassInput = document.getElementById("economyClass-count");
                 const economyClassCount = parseInt(economyClassInput.value);
@@ -145,7 +152,10 @@
                 economyClassTotal = economyClassNewCount * 100;
                 subTotal = firstClassTotal + economyClassTotal;
                 document.getElementById("subTotalValue").innerText = "$" + subTotal;
-                //return economyClassTotal;
+                let vat = subTotal * 0.1;
+                document.getElementById("vatCharge").innerText = vat;
+                const totalPrice = subTotal + vat;
+                document.getElementById("totalPrice").innerText = totalPrice;
             })
 
             document.getElementById("economyClass-decrease").addEventListener("click", function () {
@@ -156,11 +166,14 @@
                 economyClassTotal = economyClassNewCount * 100;
                 subTotal = firstClassTotal + economyClassTotal;
                 document.getElementById("subTotalValue").innerText = "$" + subTotal;
-                //return economyClassTotal;
+                let vat = subTotal * 0.1;
+                document.getElementById("vatCharge").innerText = vat;
+                const totalPrice = subTotal + vat;
+                document.getElementById("totalPrice").innerText = totalPrice;
             })
 
-            // const subTotal = firstClassTotal + economyClassTotal;
-            // document.getElementById("subTotalValue").innerText = subTotal;
+
+
             // function clickChange(ticket, isIncrease) {
             //     const ticketInput = document.getElementById(ticket, "-count");
             //     const ticketCount = parseInt(ticketInput.value);
