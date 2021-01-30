@@ -103,13 +103,19 @@
             </div>
             <button id="btnBook" class="btn-style">Book Now</button>
         </div>
+        <div id="summary">
+            <h3 style="text-align: center;">Congratulations</h3>
+            <h5>First Class Ticket: <span id="firstClassBought"></span></h5>
+            <h5>Economy Class Ticket: <span id="economyClassBought"></span></h5>
+            <h5>Total Price: <span id="totalTicketCost"></span></h5>
+        </div>
         </div>
 
         <div class="booking-content">
             <h1>discover <br> around the world</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicingelit. Provident voluptatibus quam fuga laborumalias
                 veniam libero autem quasi maxime ullam vero nama imi dolor, architecto ab facilis eaque deserunt nobise
-                voluptatibus quama</p>
+                voluptatibus quam</p>
         </div>
         </section>
         <script>
@@ -157,6 +163,11 @@
                 const totalPrice = subTotal + vat;
                 document.getElementById("totalPrice").innerText = totalPrice;
             }
+            document.getElementById('btnBook').addEventListener("click", function(){
+                document.getElementById("booking").style.display = "none";
+                document.getElementById("summary").style.display = "block";
+                    })
+
         </script>
 
         <!--Thank You-->
