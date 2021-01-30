@@ -35,7 +35,7 @@ nav ul li a{
     text-transform: uppercase;
 }
 nav ul li a:hover, a.active{
-    background-color: #3352F2;
+    background-color: rgb(248, 168, 131);
     border-radius: 5px;
 }
 .main-content{
@@ -119,4 +119,7 @@ nav ul li a:hover, a.active{
 .amount{
     display: flex;
     justify-content: space-between;
+}
+#summary{
+    display: none;
 }

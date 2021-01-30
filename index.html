@@ -33,6 +33,7 @@
     <!--Booking Section-->
     <main class="main-content container">
         <div class="booking-form">
+            <div id="booking">
             <h3>Booking Flights</h3>
             <div class="input-group">
                 <label for="">Flying From</label>
@@ -57,8 +58,8 @@
                     <label for="">First Class ($150)</label>
                     <div class="input-group">
                         <input id="firstClass-count" type="text" class="form-control text-center" value="0">
-                        <button id="firstClass-increase" class="btn btn-default"><i class="fas fa-plus"></i></button>
-                        <button id="firstClass-decrease" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                        <button onclick="firstClassChange(true)" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                        <button onclick="firstClassChange(false)" class="btn btn-default"><i class="fas fa-minus"></i></button>
                     </div>
                 </div>
             </div>
@@ -67,8 +68,8 @@
                     <label for="">Economy ($100)</label>
                     <div class="input-group">
                         <input id="economyClass-count" type="text" class="form-control text-center" value="0">
-                        <button id="economyClass-increase" class="btn btn-default"><i class="fas fa-plus"></i></button>
-                        <button id="economyClass-decrease" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                        <button onclick="economyClassChange(true)" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                        <button onclick="economyClassChange(false)" class="btn btn-default"><i class="fas fa-minus"></i></button>
                     </div>
                 </div>
             </div>
@@ -100,7 +101,8 @@
                     </div>
                 </div>
             </div>
-            <button class="btn-style">Book Now</button>
+            <button id="btnBook" class="btn-style">Book Now</button>
+        </div>
         </div>
 
         <div class="booking-content">
@@ -116,10 +118,16 @@
             let economyClassTotal = 0;
             let subTotal = firstClassTotal + economyClassTotal;
 
-            document.getElementById("firstClass-increase").addEventListener("click", function () {
-                const firstClassInput = document.getElementById("firstClass-count");
-                const firstClassCount = parseInt(firstClassInput.value);
-                const firstClassNewCount = firstClassCount + 1;
+            function firstClassChange(isIncrease){
+                let firstClassInput = document.getElementById("firstClass-count");
+                let firstClassCount = parseInt(firstClassInput.value);
+                let firstClassNewCount = firstClassCount;
+                if(isIncrease == true){
+                     firstClassNewCount = firstClassCount + 1;
+                }
+                if(isIncrease == false && firstClassCount>0){
+                     firstClassNewCount = firstClassCount - 1;
+                }
                 firstClassInput.value = firstClassNewCount;
                 firstClassTotal = firstClassNewCount * 150;
                 subTotal = firstClassTotal + economyClassTotal;
@@ -128,26 +136,18 @@
                 document.getElementById("vatCharge").innerText = vat;
                 const totalPrice = subTotal + vat;
                 document.getElementById("totalPrice").innerText = totalPrice;
-            })
+            }
 
-            document.getElementById("firstClass-decrease").addEventListener("click", function () {
-                const firstClassInput = document.getElementById("firstClass-count");
-                const firstClassCount = parseInt(firstClassInput.value);
-                const firstClassNewCount = firstClassCount - 1;
-                firstClassInput.value = firstClassNewCount;
-                firstClassTotal = firstClassNewCount * 150;
-                subTotal = firstClassTotal + economyClassTotal;
-                document.getElementById("subTotalValue").innerText = "$" + subTotal;
-                let vat = subTotal * 0.1;
-                document.getElementById("vatCharge").innerText = vat;
-                const totalPrice = subTotal + vat;
-                document.getElementById("totalPrice").innerText = totalPrice;
-            })
-
-            document.getElementById("economyClass-increase").addEventListener("click", function () {
-                const economyClassInput = document.getElementById("economyClass-count");
-                const economyClassCount = parseInt(economyClassInput.value);
-                const economyClassNewCount = economyClassCount + 1;
+            function economyClassChange(isIncrease){
+                let economyClassInput = document.getElementById("economyClass-count");
+                let economyClassCount = parseInt(economyClassInput.value);
+                let economyClassNewCount = economyClassCount;
+                if(isIncrease == true){
+                    economyClassNewCount = economyClassCount + 1;
+                }
+                if(isIncrease == false && economyClassCount>0){
+                    economyClassNewCount = economyClassCount - 1;
+                }
                 economyClassInput.value = economyClassNewCount;
                 economyClassTotal = economyClassNewCount * 100;
                 subTotal = firstClassTotal + economyClassTotal;
@@ -156,53 +156,7 @@
                 document.getElementById("vatCharge").innerText = vat;
                 const totalPrice = subTotal + vat;
                 document.getElementById("totalPrice").innerText = totalPrice;
-            })
-
-            document.getElementById("economyClass-decrease").addEventListener("click", function () {
-                const economyClassInput = document.getElementById("economyClass-count");
-                const economyClassCount = parseInt(economyClassInput.value);
-                const economyClassNewCount = economyClassCount - 1;
-                economyClassInput.value = economyClassNewCount;
-                economyClassTotal = economyClassNewCount * 100;
-                subTotal = firstClassTotal + economyClassTotal;
-                document.getElementById("subTotalValue").innerText = "$" + subTotal;
-                let vat = subTotal * 0.1;
-                document.getElementById("vatCharge").innerText = vat;
-                const totalPrice = subTotal + vat;
-                document.getElementById("totalPrice").innerText = totalPrice;
-            })
-
-
-
-            // function clickChange(ticket, isIncrease) {
-            //     const ticketInput = document.getElementById(ticket, "-count");
-            //     const ticketCount = parseInt(ticketInput.value);
-            //     const ticketNewCount = 0;
-            //     if (isIncrease == true) {
-            //         ticketNewCount = ticketCount + 1;
-            //     }
-            //     if (isIncrease == false && ticketCount > 0) {
-            //         ticketNewCount = ticketCount - 1;
-            //     }
-            //     ticketInput.value = ticketNewCount;
-            //     //const firstClassTotal = 0;
-            //     if (ticket == firstClass) {
-            //         firstClassTotal = ticketNewCount * 150;
-            //     }
-            //     //const economyClassTotal = 0;
-            //     if (ticket == economyClass) {
-            //         economyClassTotal = ticketNewCount * 100;
-            //     }
-            //     const ticketTotal = firstClassTotal + economyClassTotal;
-            //     document.getElementById("subTotalValue").innerText = totalValue;
-
-            //     const vat = ticketTotal * 0.1;
-            //     document.getElementById(" vatCharge").innerText = vat;
-
-            //     const totalPrice = ticketTotal + vat;
-            //     document.getElementById("totalPrice").innerText = totalPrice;
-            // }
-
+            }
         </script>
 
         <!--Thank You-->
